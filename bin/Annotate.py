@@ -7,7 +7,7 @@ myfile = open(sys.argv[1])
 gtffile = sys.argv[2]
 outfile = open(sys.argv[1][:-4] + '_geneanno.sam', 'w')
 data = pyensembl.Genome(reference_name='GRCH37', annotation_name='my_genome_features', gtf_path_or_url=gtffile)
-
+data.index()
 with myfile:
     for line in myfile:
         if line[0] == '@':

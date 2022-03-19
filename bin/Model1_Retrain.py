@@ -10,12 +10,13 @@ from keras.models import Sequential,Model
 from keras.layers import Embedding,Dropout,Bidirectional,Flatten,Dense,LSTM,TimeDistributed, Activation,Input,merge,concatenate
 from keras.callbacks import ModelCheckpoint,CSVLogger
 from keras.layers import Conv1D, GlobalAveragePooling1D, MaxPooling1D
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 import numpy as np
-from keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical
 import os
 import sys
-
+import random
+import tensorflow as tf
 
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
@@ -56,10 +57,13 @@ def Cla_LSTM():
     ACT1 = Activation('softmax')(DENSE2)
     # model = Model(inputs=[INPUT1,INPUT2],outputs= ACT1)
     model = Model(inputs=INPUT1,outputs= ACT1)
-    model.summary()
+    #model.summary()
     return model
 
 if __name__ == '__main__':
+    np.random.seed(1122)
+    random.seed(1122)
+    tf.random.set_seed(1122)
     npydir = sys.argv[1]
     weightfile = sys.argv[2]
     epochoutdir = sys.argv[3]
@@ -91,18 +95,18 @@ if __name__ == '__main__':
     model = Cla_LSTM()
     model.load_weights(weightfile)
 
-    ADAM = Adam(lr=0.0001)
+    ADAM = Adam(learning_rate=0.0001)
     model_checkpoint = ModelCheckpoint(filepath=epochoutdir + '/RetrainWeight-{epoch:03d}.hdf5', verbose=1, monitor='val_loss', save_best_only=True)
-
+    model_checkpoint2 = ModelCheckpoint(filepath=epochoutdir + '/RetrainWeight.hdf5', verbose=1, monitor='val_loss', save_best_only=True)
     model.compile(loss='binary_crossentropy', optimizer=ADAM, metrics=['accuracy'])
     csv_loger=CSVLogger('log.csv',append=True,separator=';')
 
     # 训练模型
     batch_size = 500
     epochs = itere
-    
+    np.random.seed(1122)
     # model.fit(x=[Tra_x_input1,Tra_x_input2], y=Tra_y,batch_size=batch_size,epochs=epochs, verbose=1 ,callbacks=[model_checkpoint,csv_loger], validation_split=0.25, shuffle=True)
-    model.fit(x=Tra_x, y=Tra_y,batch_size=batch_size,epochs=epochs,validation_data=(Tst_x, Tst_y),verbose=1 ,callbacks=[model_checkpoint,csv_loger])
+    model.fit(x=Tra_x, y=Tra_y,batch_size=batch_size,epochs=epochs,validation_data=(Tst_x, Tst_y),verbose=1 ,callbacks=[model_checkpoint,model_checkpoint2, csv_loger], shuffle=False)
 
 
 # 

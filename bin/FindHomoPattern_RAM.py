@@ -3,18 +3,10 @@ from __future__ import division
 import sys
 import numpy as np
 import math
-import random
+
 
 # ***** readme *****
 # This code wants to verify that fake fusion is more likely to be homo
-
-
-def simulateString(length):
-    baseset = ["A", "T", "C", "G"]
-    res = ''
-    for i in range(length):
-        res += str(random.sample(baseset, 1))[2]
-    return res
 
 
 def GCcontent(str1, str2):

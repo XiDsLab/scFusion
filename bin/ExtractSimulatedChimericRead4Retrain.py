@@ -13,6 +13,7 @@ def ReverseComplement(str):
     return str[::-1].replace('A', 't').replace('T', 'a').replace('G', 'c').replace('C', 'g').upper()
 
 
+random.seed(1122)
 chimericfile = open(sys.argv[1])
 mappingpath = sys.argv[2]
 linenum = len(chimericfile.readlines())

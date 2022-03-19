@@ -7,15 +7,15 @@ from keras.models import Sequential
 from keras.layers import Embedding,Dropout,Bidirectional,Flatten,Dense,LSTM,TimeDistributed, Activation
 from keras.callbacks import ModelCheckpoint,CSVLogger
 from keras.layers import Conv1D, GlobalAveragePooling1D, MaxPooling1D
-from keras.optimizers import Adam
+from tensorflow.keras.optimizers import Adam
 import numpy as np
-from keras.utils import to_categorical
+from tensorflow.keras.utils import to_categorical
 from Model1 import Cla_LSTM
 import os
 import sys
 
 # os.environ["CUDA_VISIBLE_DEVICES"] = "0"
-
+np.random.seed(1122)
 outfile = open(sys.argv[1], 'w')
 weightfile = sys.argv[2]
 prefix = ''

@@ -2,10 +2,10 @@ from keras.models import Sequential
 from keras.layers import Embedding,Dropout,Bidirectional,Flatten,Dense,LSTM,TimeDistributed
 from keras.callbacks import ModelCheckpoint,CSVLogger
 from keras.layers import Conv1D, GlobalAveragePooling1D, MaxPooling1D
-from keras.optimizers import Adam
 import numpy as np
 import sys
 ########################################################################################################################
+np.random.seed(1122)
 ChimericFile = sys.argv[1]
 FakeChimericFile = sys.argv[2]
 Outdir = sys.argv[3]
@@ -88,7 +88,7 @@ DataNum = min(Data1.shape[0],Data2.shape[0])
 Data1 = Data1[0:DataNum,:,:]
 Data2 = Data2[0:DataNum,:,:]
 
-TraNum = np.int(DataNum*0.7)
+TraNum = int(DataNum*0.7)
 
 Good_for_Tra = Data1[0:TraNum,:,:]
 Simu_for_Tra = Data2[0:TraNum,:,:]

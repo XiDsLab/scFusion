@@ -1,7 +1,6 @@
 from __future__ import print_function
 from __future__ import division
 import sys
-import numpy as np
 import math
 import random
 
@@ -9,7 +8,7 @@ import random
 # ***** readme *****
 # This code extracts chimeric read from sam file for training, with pos and direction
 # The input is *ChiDist_middle.txt
-
+random.seed(1122)
 infile = open(sys.argv[1])
 lines = infile.readlines()
 totallines = len(lines)

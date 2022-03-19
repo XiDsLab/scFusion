@@ -2,7 +2,7 @@
 ### V 2.2.1
 ##############
 
-
+options(warn=-1)
 ## 设分布都是ZINB分布，先用极大似然估计参数
 CalcZINB = function(par)
 {
@@ -108,6 +108,7 @@ CalcPValueZINB_Fusion_2.0.0_3 = function(par)
 
 library(splines)
 library(stringr)
+set.seed(1122)
 Args = commandArgs()
 numcell = as.integer(Args[6])
 data = read.table(Args[7],sep='\t', stringsAsFactors = F)

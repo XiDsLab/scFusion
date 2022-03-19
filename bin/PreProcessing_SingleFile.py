@@ -2,13 +2,15 @@ from keras.models import Sequential
 from keras.layers import Embedding,Dropout,Bidirectional,Flatten,Dense,LSTM,TimeDistributed
 from keras.callbacks import ModelCheckpoint,CSVLogger
 from keras.layers import Conv1D, GlobalAveragePooling1D, MaxPooling1D
-from keras.optimizers import Adam
 import numpy as np
 import sys
 ########################################################################################################################
 def ReverseComplement(str):
     return str[::-1].replace('A', 't').replace('T', 'a').replace('G', 'c').replace('C', 'g').upper()
 
+
+
+np.random.seed(1122)
 readfile = sys.argv[1]
 findgang = sys.argv[1].rfind('/')
 filedir = sys.argv[1][:findgang+1]

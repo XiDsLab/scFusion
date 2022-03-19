@@ -4,10 +4,9 @@ FilePath=$1
 mystart=$2
 myend=$3
 prefix=$4
-weightfile=$5
-hg19file=$6
-gtf=$7
-codedir=$8
+hg19file=$5
+gtf=$6
+codedir=$7
 
 if [ "${prefix}" = "." ]
 then

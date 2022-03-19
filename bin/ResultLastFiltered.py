@@ -8,6 +8,8 @@ geneposfile = open(sys.argv[2])
 outfilepath = sys.argv[3]
 annot = open(sys.argv[4])
 geneposfile2path = sys.argv[5]
+lncfilter = sys.argv[6]
+nasfilter = sys.argv[7]
 outfile = open(outfilepath, 'w')
 trimmedfile = open(outfilepath + '.fail', 'w')
 totalfile = open(outfilepath + '.total', 'w')
@@ -101,7 +103,7 @@ for line in resultfile.readlines():
             break
     if not gene1exon or not gene2exon:
         flag[5] = '\tintron'
-    if flag[0] == '\t' and flag[1] == '\t' and flag[2] == '\t' and flag[3] == '\t' and flag[4] == '\t' and flag[5] == '\t':
+    if (flag[0] == '\t' or nasfilter == '1') and flag[1] == '\t' and flag[2] == '\t' and (flag[3] == '\t' or lncfilter == '1') and flag[4] == '\t' and flag[5] == '\t':
         outfile.write(line)
     else:
         trimmedfile.write(line.rstrip() + flag[0] + flag[1] + flag[2] + flag[3] + flag[4] + flag[5] + '\n')
