@@ -251,12 +251,12 @@ if sys.argv[1] == 'FusionReport':
     if aa == 0:
         if args.Prefix == '.':
             args.Prefix = ''
-        print('Final Results are in ' + args.OutDir + '/FinalResult/' + args.Prefix + 'FinalOutput.abridged.txt')
         os.system(
-            'cat ' + args.OutDir + '/FinalResult/' + args.Prefix + 'FinalOutput.abridged.txt > ' + args.OutDir + '/Result.abridged.txt')
+            'cat ' + args.OutDir + '/FinalResult/' + args.Prefix + 'FinalOutput.abridged.txt > ' + args.OutDir + '/' + args.Prefix + 'Result.abridged.txt')
         os.system(
-            'cat ' + args.OutDir + '/FinalResult/' + args.Prefix + 'FinalOutput.full.txt > ' + args.OutDir + '/Result.full.txt')
+            'cat ' + args.OutDir + '/FinalResult/' + args.Prefix + 'FinalOutput.full.txt > ' + args.OutDir + '/' + args.Prefix + 'Result.full.txt')
         os.system('mv ' + args.OutDir + '/FinalResult/ ' + args.OutDir + '/Resulttemp/')
+        print('Final Results are in ' + args.OutDir + '/' + args.Prefix + 'Result.abridged.txt and ' + args.OutDir + '/' + args.Prefix + 'Result.full.txt')
     else:
         print('ERROR!!!!!')
 
